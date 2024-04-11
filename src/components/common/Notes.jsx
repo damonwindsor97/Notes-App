@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import CreateNote from "./CreateNote";
 import "./notes.css";
 import { v4 as uuid } from "uuid";
@@ -8,13 +8,16 @@ import Search from "./Search";
 
 function Notes() {
   const [inputText, setInputText] = useState("");
-  const [searchText, setSearchText] = useState(""); // State to store the search text
+  const [searchText, setSearchText] = useState("");
+
+  // DOuble checking to make sure there is something in localstorage, otherwise it was resetting upon refresh for some reason... 
   const [notes, setNotes] = useState(() => {
     const storedNotes = localStorage.getItem("userNotes");
     return storedNotes ? JSON.parse(storedNotes) : [];
   });
   const [editToggle, setEditToggle] = useState(null);
 
+  // our variables for the dynamic time when user posts
   var timeNow = new Date();
   var dateTime = timeNow.toLocaleString()
 
@@ -68,6 +71,7 @@ function Notes() {
       {/* Passing handleSearchTextChange function to Search */}
       <Search handleSearchText={handleSearchTextChange} />
       <div className="notes">
+        {/* Massive turnery expression to see whether the editToggle is true or false */}
         {filteredNotes.map((note) =>
           editToggle === note.id ? (
             <CreateNote
