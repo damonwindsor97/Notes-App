@@ -49,3 +49,11 @@ body {
 .search input:focus {
   outline: none;
 }
+
+.notes {
+  max-width: 1200px;
+  margin: 0px auto;
+  display: grid;
+  grid-gap: '1rem';
+  grid-template-columns: repeat(3, minmax(300px, 1fr));
+}

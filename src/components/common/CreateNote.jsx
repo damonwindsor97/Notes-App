@@ -5,6 +5,7 @@ function CreateNote({inputText, setInputText, handleSave}) {
 
   const char = 255;
   const charLimit = char - inputText.length;
+
   return (
     <div className="note">
         <textarea
